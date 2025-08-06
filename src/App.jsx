@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ChatInput from './chatbot/ChatInput'
+import ChatRender from './chatbot/ChatRender'
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <ChatInput chatMsg={chatMsg} setChatMsg={setChatMsg} />
+      <ChatRender chatMsg={chatMsg} setChatMsg={setChatMsg} />
     </>
   )
 }
