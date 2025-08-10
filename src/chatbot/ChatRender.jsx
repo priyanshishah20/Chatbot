@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Chatmessage from '../Chatmessage'
 import ChatInput from './ChatInput'
 
@@ -23,12 +23,23 @@ const ChatRender = ({chatMsg, setChatMsg}) => {
         setSaveText(event.target.value)
     }
 
+    const chatMsgRef = useRef();
+
+    useEffect(() => {
+        console.log('updated');
+        console.log(chatMsgRef.current);
+        const containerElem = chatMsgRef.current;
+        if(containerElem) {
+            containerElem.scrollTop = containerElem.scrollHeight;
+        }
+    }, [chatMsg]);
+
     return (
         <>
-            <div className='container mx-auto py-4 w-[94%] lg:w-1/2'>
+            <div className='container mx-auto w-[94%] lg:w-1/2'>
                 <ChatInput saveInput={saveInput} saveText={saveText} sendMsg={sendMsg}/>
 
-                <div>
+                <div ref={chatMsgRef} style={{overflow:'auto', height:'100vh', scrollbarWidth:'none'}}> 
                     {chatMsg.map((msg) => (
                      <Chatmessage key={msg.id} message={msg.message} sender={msg.sender} />
                     //<Chatmessage key={msg.id} chatMsg={chatMsg} setChatMsg={setChatMsg} sender={msg.sender} />
