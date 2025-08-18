@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import Chatmessage from '../Chatmessage'
 import ChatInput from './ChatInput'
 
+/* global Chatbot */ // this tells ESLint that Chatbot exists globally. so not to throw error
+
 const ChatRender = ({chatMsg, setChatMsg}) => {
     // const [chatMsg, setChatMsg] = useState([
     //     { id:'id1', message: 'Hi, how are you?', sender: 'user' },
